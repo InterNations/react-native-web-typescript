@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 
-const colors = {
+export const colors = {
     neutralDarkest: 'rgb(0,0,0)',
     neutralDarker: 'rgb(50,50,50)',
     neutralDark: 'rgb(100,100,100)',
@@ -41,26 +41,37 @@ export const styles = StyleSheet.create({
     },
     button: {
         // textTransform: 'none',
+        borderColor: colors.activityGroupConsul,
+        borderStyle: 'solid',
+        borderWidth: 1,
+    },
+    textInput: {
+        borderColor: colors.activityGroupConsul,
+        borderStyle: 'solid',
+        borderWidth: 1,
+        color: colors.primary,
+        padding: 4,
     },
 })
 
-function makeStr(length: number) {
+const makeStr = (length: number) => {
     let result = ''
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     const charactersLength = characters.length
+
     for (let i = 0; i < length; i++) {
         result += characters.charAt(Math.floor(Math.random() * charactersLength))
     }
+
     return result
 }
 
 export const generateListItems = (prefix: number | string) => {
     const result = []
+
     for (let i = 0; i < 20; i++) {
-        result.push({
-            text: `${prefix}[${i}] ${makeStr(40)}\n${prefix} ${makeStr(10)} ${makeStr(10)}\n${prefix} ${makeStr(15)}`,
-            button: `Button ${makeStr(5)}`,
-        })
+        result.push(`${prefix}[${i}] ${makeStr(40)}\n${prefix} ${makeStr(10)} ${makeStr(10)}\n${prefix} ${makeStr(15)}`)
     }
+
     return result
 }

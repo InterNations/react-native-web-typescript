@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { View, Text, FlatList, Button, Alert } from 'react-native'
-import { styles, generateListItems } from './utils'
+import { View, Text, FlatList, Button, Alert, TextInput } from 'react-native'
+import { styles, colors, generateListItems } from './utils'
 
 export default memo(function Main() {
     return (
@@ -8,13 +8,15 @@ export default memo(function Main() {
             <Text>react native with web and typescript</Text>
             <View>
                 <FlatList
-                    renderItem={({ item }) => (
-                        <View style={styles.listItem}>
-                            <Text style={styles.listItemText}>{item.text}</Text>
+                    renderItem={({ item, index }) => (
+                        <View style={styles.listItem} key={item}>
+                            <Text style={styles.listItemText}>{item}</Text>
+                            {index === 2 ? <TextInput style={styles.textInput} /> : null}
                             <Button
-                                onPress={() => Alert.alert('Left button pressed')}
-                                title={item.button.toLowerCase()}
-                                testID={item.button.replace(/\W+/g, '')}
+                                onPress={() => Alert.alert(`Button ${index} pressed`)}
+                                title={`Button ${index}`}
+                                testID={item.replace(/\W+/g, '')}
+                                color={colors.primary}
                             ></Button>
                         </View>
                     )}
